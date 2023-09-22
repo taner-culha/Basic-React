@@ -1,6 +1,6 @@
 <p>
 BasicReactNative folder<br>
-<img src="https://github.com/taner-culha/Basic-React/blob/main/reactnative.png" alt="img" width="300" height="300">
+<img src="https://github.com/taner-culha/Basic-React/blob/main/reactnative.png" alt="img" width="300" height="500">
 <p>
 
 # Getting Started with Create React App
