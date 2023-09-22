@@ -1,14 +1,36 @@
 import React, { useState } from 'react';
 import {
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   View,
   Image,
   TouchableHighlight,
+  Button,
 } from 'react-native';
 
+const BoxHeader=({data, setData})=>{
+  const add=()=>{
+    setData([...data,''])
+  }
+  return(
+    <View styles={styles.boxHead}>
+      <Button title="Ekle" onPress={add}/>
+    </View>
+  )
+}
+
+const Box =({id}) =>{
+  return(
+    <View style={styles.box}>
+      <Text>List  {id + 1}</Text>
+    </View>
+  )
+}
+
 export default function App() {
+  const[data, setData]=useState([''])
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -21,6 +43,7 @@ export default function App() {
           </TouchableHighlight>
         </View>
       </View>
+      <ScrollView>
       <View style={styles.content}>
         <TouchableHighlight onPress={() => console.log('Buraya Tıkladınız...')}>
           <View style={styles.button}>
@@ -30,13 +53,20 @@ export default function App() {
           </View>
         </TouchableHighlight>
       </View>
+      <View style={styles.boxHead}>
+        <BoxHeader {...{data, setData}}/>
+        {data.map((d,i)=>(
+          <Box id={i}/>
+        ))}
+      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#000',
+    backgroundColor: 'white',
     flex: 1,
   },
   header: {
@@ -68,14 +98,26 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop:10,
   },
   button: {
     alignItems: 'center',
     justifyContent: 'center',
     width: 200,
     height: 70,
-    borderColor: '',
+    borderColor: 'red',
     borderRadius: 40,
     backgroundColor: '#269',
+  },
+  boxHead:{
+    padding:20, 
+    marginBottom:20,
+    marginTop:20,
+  },
+  box:{
+    backgroundColor:'#d9edf7', 
+    padding:20, 
+    marginBottom:10,
+    marginTop:10,
   },
 });
